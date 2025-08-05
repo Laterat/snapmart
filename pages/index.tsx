@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Hero from "../public/assets/hero.png";
 import TopRatedProducts from "@/components/TopRatedProducts";
+import HighestDiscountProducts from "@/components/HighestDiscountProducts";
 
 export default function Home() {
   return (
@@ -28,8 +29,9 @@ export default function Home() {
           </button>
         </div>
       </div>
-      <div>
+      <div >
         <TopRatedProducts />
+        <HighestDiscountProducts />
       </div>
     </section>
   );
