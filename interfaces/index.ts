@@ -25,7 +25,7 @@ export interface ProductProps {
   returnPolicy: string;
   minimumOrderQuantity: number;
   meta: Meta;
-  images: string[];
+  images: string;
   thumbnail: string;
 }
 
@@ -49,3 +49,6 @@ export interface Review {
   reviewerName: string;
   reviewerEmail: string;
 }
+
+
+export type ProductCardProps = Pick<ProductProps, 'id' | 'title' | 'price' | 'discountPercentage' | 'rating'| 'images'>;
