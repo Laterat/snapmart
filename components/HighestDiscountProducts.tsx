@@ -1,33 +1,12 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import { useProductLists } from "@/hooks/useProductLists";
 import ProductCard from "@/components/common/productCard";
-import { ProductProps } from "@/interfaces";
+
 
 const HighestDiscountProduct: React.FC = () => {
-  const [highestProducts, setHighestproducts] = useState<ProductProps[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const res = await axios.get("https://dummyjson.com/products");
-        const sorted = res.data.products
-          .sort(
-            (a: ProductProps, b: ProductProps) =>
-              b.discountPercentage - a.discountPercentage
-          )
-          .slice(0, 8);
-        setHighestproducts(sorted);
-      } catch (err) {
-        console.error("fetching error", err);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchProducts();
-  }, []);
+  const {highestProducts, loading }=useProductLists();
+  
   return (
     <section className="mt-15 mx-10">
       <h1 className="text-2xl mb-10 md:text-5xl font-extrabold">

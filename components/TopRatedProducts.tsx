@@ -1,30 +1,11 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import { useProductLists } from "@/hooks/useProductLists";
 import ProductCard from "@/components/common/productCard";
-import { ProductProps } from "@/interfaces";
+
 
 const TopRatedProducts: React.FC = () => {
-  const [topProducts, setTopProducts] = useState<ProductProps[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const res = await axios.get("https://dummyjson.com/products");
-        const sorted = res.data.products
-          .sort((a: ProductProps, b: ProductProps) => b.rating - a.rating)
-          .slice(0, 8);
-        setTopProducts(sorted);
-      } catch (err) {
-        console.error("Failed to fetch products", err);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchProducts();
-  }, []);
+      const { topProducts, loading } = useProductLists();
 
   return (
     <section className="mt-15 mx-10">
