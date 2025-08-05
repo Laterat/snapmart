@@ -34,3 +34,5 @@ const ProductCard: React.FC<ProductCardProps> = ({
     </section>
   );
 };
+
+export default ProductCard;
