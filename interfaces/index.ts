@@ -25,7 +25,7 @@ export interface ProductProps {
   returnPolicy: string;
   minimumOrderQuantity: number;
   meta: Meta;
-  images: string;
+  images: string[];
   thumbnail: string;
 }
 

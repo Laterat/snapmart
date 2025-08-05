@@ -29,8 +29,8 @@ const TopRatedProducts: React.FC = () => {
   }, []);
 
   return (
-    <section>
-      <h1>Top Rated Products</h1>
+    <section className="mt-7 mx-10">
+      <h1 className="text-2xl mb-5">Top Rated Products</h1>
         {loading ? (
     <p>Loading...</p>
   ) : (
