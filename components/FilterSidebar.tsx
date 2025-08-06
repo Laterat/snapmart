@@ -14,9 +14,9 @@ const FilterSidebar = () => {
   return (
     <aside className="space-y-4 p-4 border rounded-md shadow w-full sm:w-1/4">
       {/* Category */}
-      <div>
-        <label>Category</label>
-        <select onChange={(e) => dispatch(setCategory(e.target.value))}>
+      <div className="flex flex-col space-y-3">
+        <label className="text-2xl font-semibold">Category</label>
+        <select className="border border-gray-500 rounded-sm h-10 px-2 " onChange={(e) => dispatch(setCategory(e.target.value))}>
           <option value="">All</option>
           <option value="smartphones">Smartphones</option>
           <option value="laptops">Laptops</option>
@@ -25,8 +25,8 @@ const FilterSidebar = () => {
       </div>
 
       {/* Brand */}
-      <div>
-        <label>Brand</label>
+      <div className="flex flex-col space-y-3">
+        <label className="text-2xl font-semibold">Brand</label>
         <select onChange={(e) => dispatch(setBrand(e.target.value))}>
           <option value="">All</option>
           <option value="Apple">Apple</option>
@@ -36,19 +36,16 @@ const FilterSidebar = () => {
       </div>
 
       {/* Rating */}
-      <div>
+      <div className="flex flex-col space-y-3">
         <label>Minimum Rating</label>
-        <input
-          type="number"
-          min={0}
-          max={5}
-          step={0.1}
-          onChange={(e) => dispatch(setRating(Number(e.target.value)))}
-        />
+        <select onChange={(e) => dispatch(setRating(Number(e.target.value)))}>
+        
+        </select>
+         
       </div>
 
       {/* Price Range */}
-      <div>
+      <div >
         <label>Price Range</label>
         <input
           type="range"
