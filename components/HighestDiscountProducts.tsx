@@ -8,7 +8,7 @@ const HighestDiscountProduct: React.FC = () => {
   const {highestProducts, loading }=useProductLists();
 
   return (
-    <section className="mt-15 mx-10 ">
+    <section className="mt-15 mx-10 mb-10">
       <h1 className="text-2xl mb-10 md:text-5xl font-extrabold">
         Highest Discount Products
       </h1>
