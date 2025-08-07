@@ -38,7 +38,7 @@ const ProductsPage = () => {
 
   useEffect(() => {
     setPage(1);
-  }, [category, brand, rating, sortByPrice]);
+  }, [filtered.length]);
 
   return (
     <section>
