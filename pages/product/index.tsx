@@ -10,7 +10,6 @@ const ProductsPage = () => {
   const { allProducts } = useProductLists();
   const filters = useSelector((state: RootState) => state.filter);
 
- 
   const [page, setPage] = useState(1);
   const productPerPage = 25;
 
@@ -37,6 +36,10 @@ const ProductsPage = () => {
     setPage(1);
   }, [filtered.length]);
 
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [page]);
+
   return (
     <section>
       <h1 className="text-2xl ml-80 md:text-3xl font-extrabold">
@@ -52,6 +55,10 @@ const ProductsPage = () => {
           </div>
 
           <div className="flex justify-center mt-6 space-x-2">
+            <button disabled={page === 1} onClick={() => setPage(page - 1)}>
+              Prev
+            </button>
+
             {Array.from({ length: totalPages }).map((_, idx) => (
               <button
                 key={idx}
@@ -63,6 +70,13 @@ const ProductsPage = () => {
                 {idx + 1}
               </button>
             ))}
+
+            <button
+              disabled={page === totalPages}
+              onClick={() => setPage(page + 1)}
+            >
+              Next
+            </button>
           </div>
         </div>
       </main>

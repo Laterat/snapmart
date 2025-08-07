@@ -17,7 +17,7 @@ const FilterSidebar = () => {
   );
 
   return (
-    <aside className=" h-fit py-7 space-y-4 p-4 border rounded-md shadow w-full sm:w-1/4">
+    <aside className=" h-fit py-7 space-y-4 p-4 border rounded-md shadow w-full sm:w-1/4  ">
       {/* Category */}
       <div className="flex flex-col space-y-3">
         <label className="text-2xl font-semibold">Category</label>
