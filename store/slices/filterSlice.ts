@@ -4,7 +4,6 @@ interface FilterState {
   category: string;
   brand: string;
   rating: number;
-  priceRange: [number, number];
   sortByPrice: "asc" | "desc" | null;
 }
 
@@ -12,7 +11,6 @@ const initialState: FilterState = {
   category: "",
   brand: "",
   rating: 0,
-  priceRange: [0, 1000],
   sortByPrice: null,
 };
 
@@ -29,9 +27,6 @@ const filterSlice = createSlice({
     setRating: (state, action: PayloadAction<number>) => {
       state.rating = action.payload;
     },
-    setPriceRange: (state, action: PayloadAction<[number, number]>) => {
-      state.priceRange = action.payload;
-    },
     setSortByPrice: (state, action: PayloadAction<"asc" | "desc" | null>) => {
       state.sortByPrice = action.payload;
     },
@@ -43,7 +38,6 @@ export const {
   setCategory,
   setBrand,
   setRating,
-  setPriceRange,
   setSortByPrice,
   resetFilters,
 } = filterSlice.actions;

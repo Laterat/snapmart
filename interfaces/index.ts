@@ -52,3 +52,9 @@ export interface Review {
 
 
 export type ProductCardProps = Pick<ProductProps, 'id' | 'title' | 'price' | 'discountPercentage' | 'rating'| 'images'>;
+
+
+export interface pill{
+    label:string;
+    onclick: ()=>void;
+}

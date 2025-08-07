@@ -23,9 +23,7 @@ const ProductsPage = () => {
     (p) =>
       (!filters.category || p.category === filters.category) &&
       (!filters.brand || p.brand === filters.brand) &&
-      p.rating >= filters.rating &&
-      p.price >= filters.priceRange[0] &&
-      p.price <= filters.priceRange[1]
+      p.rating >= filters.rating
   );
 
   if (filters.sortByPrice === "asc") {
