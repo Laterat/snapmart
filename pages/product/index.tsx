@@ -10,10 +10,7 @@ const ProductsPage = () => {
   const { allProducts } = useProductLists();
   const filters = useSelector((state: RootState) => state.filter);
 
-  const { category, brand, rating, sortByPrice } = useSelector(
-    (state: RootState) => state.filter
-  );
-
+ 
   const [page, setPage] = useState(1);
   const productPerPage = 25;
 
