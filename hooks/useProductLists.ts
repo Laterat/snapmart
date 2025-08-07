@@ -6,12 +6,17 @@ export const useProductLists = () => {
   const [topProducts, setTopProducts] = useState<ProductProps[]>([]);
   const [highestProducts, setHighestproducts] = useState<ProductProps[]>([]);
   const [loading, setLoading] = useState(true);
+  const [allProducts, setAllProducts] = useState<ProductProps[]>([]);
+  const totalProduct = 194;
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await axios.get("https://dummyjson.com/products");
+        const res = await axios.get(
+          `https://dummyjson.com/products?limit=${totalProduct}`
+        );
         const products = res.data.products;
+        setAllProducts(products);
 
         const topRated = [...products]
           .sort((a: ProductProps, b: ProductProps) => b.rating - a.rating)
@@ -34,5 +39,5 @@ export const useProductLists = () => {
     fetchProducts();
   }, []);
 
-  return { topProducts, highestProducts, loading };
+  return { topProducts, highestProducts, loading, allProducts };
 };

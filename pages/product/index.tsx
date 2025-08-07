@@ -4,22 +4,14 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/store/store";
 import FilterSidebar from "@/components/FilterSidebar";
 import ProductCard from "@/components/common/productCard";
-import { ProductProps } from "@/interfaces";
+import { useProductLists } from "@/hooks/useProductLists";
 
 const ProductsPage = () => {
-  const [allProducts, setAllProducts] = useState<ProductProps[]>([]);
+  const { allProducts } = useProductLists();
   const filters = useSelector((state: RootState) => state.filter);
 
   const [page, setPage] = useState(1);
-  const productPerPage = 12;
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const res = await axios.get("https://dummyjson.com/products");
-      setAllProducts(res.data.products);
-    };
-    fetchData();
-  }, []);
+  const productPerPage = 25;
 
   const filtered = allProducts.filter(
     (p) =>
