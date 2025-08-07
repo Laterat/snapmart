@@ -10,6 +10,10 @@ const ProductsPage = () => {
   const { allProducts } = useProductLists();
   const filters = useSelector((state: RootState) => state.filter);
 
+  const { category, brand, rating, sortByPrice } = useSelector(
+    (state: RootState) => state.filter
+  );
+
   const [page, setPage] = useState(1);
   const productPerPage = 25;
 
@@ -31,6 +35,10 @@ const ProductsPage = () => {
   const endIndex = startIndex + productPerPage;
   const paginated = filtered.slice(startIndex, endIndex);
   const totalPages = Math.ceil(filtered.length / productPerPage);
+
+  useEffect(() => {
+    setPage(1);
+  }, [category, brand, rating, sortByPrice]);
 
   return (
     <section>
