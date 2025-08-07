@@ -4,14 +4,14 @@ interface FilterState {
   category: string;
   brand: string;
   rating: number;
-  sortByPrice: "asc" | "desc" | null;
+  sortByPrice: "asc" | "desc" | "";
 }
 
 const initialState: FilterState = {
   category: "",
   brand: "",
   rating: 0,
-  sortByPrice: null,
+  sortByPrice: "",
 };
 
 const filterSlice = createSlice({
@@ -27,7 +27,7 @@ const filterSlice = createSlice({
     setRating: (state, action: PayloadAction<number>) => {
       state.rating = action.payload;
     },
-    setSortByPrice: (state, action: PayloadAction<"asc" | "desc" | null>) => {
+    setSortByPrice: (state, action: PayloadAction<"asc" | "desc" | "">) => {
       state.sortByPrice = action.payload;
     },
     resetFilters: () => initialState,

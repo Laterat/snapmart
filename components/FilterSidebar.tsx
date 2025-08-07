@@ -7,9 +7,14 @@ import {
   resetFilters,
 } from "@/store/slices/filterSlice";
 import Pill from "@/components/common/Pill";
+import { useSelector } from "react-redux";
+import { RootState } from "@/store/store";
 
 const FilterSidebar = () => {
   const dispatch = useDispatch();
+  const { category, brand, rating, sortByPrice } = useSelector(
+    (state: RootState) => state.filter
+  );
 
   return (
     <aside className="space-y-4 p-4 border rounded-md shadow w-full sm:w-1/4">
@@ -17,6 +22,7 @@ const FilterSidebar = () => {
       <div className="flex flex-col space-y-3">
         <label className="text-2xl font-semibold">Category</label>
         <select
+          value={category}
           className="border border-gray-500 rounded-sm h-10 px-2 "
           onChange={(e) => dispatch(setCategory(e.target.value))}
         >
@@ -31,6 +37,7 @@ const FilterSidebar = () => {
       <div className="flex flex-col space-y-3">
         <label className="text-2xl font-semibold">Brand</label>
         <select
+          value={brand}
           className="border border-gray-500 rounded-sm h-10 px-2 "
           onChange={(e) => dispatch(setBrand(e.target.value))}
         >
@@ -45,6 +52,7 @@ const FilterSidebar = () => {
       <div className="flex flex-col space-y-3">
         <label className="text-2xl font-semibold">Rating</label>
         <select
+          value={rating}
           className="border border-gray-500 rounded-sm h-10 px-2 "
           onChange={(e) => dispatch(setRating(Number(e.target.value)))}
         >
@@ -60,6 +68,7 @@ const FilterSidebar = () => {
       <div className="flex flex-col space-y-3">
         <label className="text-2xl font-semibold">Sort by Price</label>
         <select
+          value={category}
           className="border border-gray-500 rounded-sm h-10 px-2 "
           onChange={(e) => dispatch(setSortByPrice(e.target.value as any))}
         >
