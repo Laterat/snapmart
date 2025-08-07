@@ -17,7 +17,7 @@ const FilterSidebar = () => {
   );
 
   return (
-    <aside className="space-y-4 p-4 border rounded-md shadow w-full sm:w-1/4">
+    <aside className=" h-fit py-7 space-y-4 p-4 border rounded-md shadow w-full sm:w-1/4">
       {/* Category */}
       <div className="flex flex-col space-y-3">
         <label className="text-2xl font-semibold">Category</label>
@@ -68,7 +68,7 @@ const FilterSidebar = () => {
       <div className="flex flex-col space-y-3">
         <label className="text-2xl font-semibold">Sort by Price</label>
         <select
-          value={category}
+          value={sortByPrice}
           className="border border-gray-500 rounded-sm h-10 px-2 "
           onChange={(e) => dispatch(setSortByPrice(e.target.value as any))}
         >

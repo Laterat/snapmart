@@ -7,9 +7,11 @@ import ProductCard from "@/components/common/productCard";
 import { ProductProps } from "@/interfaces";
 
 const ProductsPage = () => {
-  // const [allProducts, setAllProducts] = useState([]);
   const [allProducts, setAllProducts] = useState<ProductProps[]>([]);
   const filters = useSelector((state: RootState) => state.filter);
+
+  const [page, setPage] = useState(1);
+  const productPerPage = 12;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -32,15 +34,42 @@ const ProductsPage = () => {
     filtered.sort((a, b) => b.price - a.price);
   }
 
+  // Pagination slicing
+  const startIndex = (page - 1) * productPerPage;
+  const endIndex = startIndex + productPerPage;
+  const paginated = filtered.slice(startIndex, endIndex);
+  const totalPages = Math.ceil(filtered.length / productPerPage);
+
   return (
-    <main className="flex flex-col md:flex-row gap-6 p-6">
-      <FilterSidebar />
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
-        {filtered.map((product) => (
-          <ProductCard key={product.id} {...product} />
-        ))}
-      </div>
-    </main>
+    <section>
+      <h1 className="text-2xl ml-80 md:text-3xl font-extrabold">
+        All Products
+      </h1>
+      <main className="flex flex-col md:flex-row gap-6 p-6">
+        <FilterSidebar />
+        <div className="flex flex-col w-full">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 w-full">
+            {paginated.map((product) => (
+              <ProductCard key={product.id} {...product} />
+            ))}
+          </div>
+
+          <div className="flex justify-center mt-6 space-x-2">
+            {Array.from({ length: totalPages }).map((_, idx) => (
+              <button
+                key={idx}
+                className={`px-4 py-2 border rounded ${
+                  page === idx + 1 ? "bg-blue-500 text-white" : "bg-white"
+                }`}
+                onClick={() => setPage(idx + 1)}
+              >
+                {idx + 1}
+              </button>
+            ))}
+          </div>
+        </div>
+      </main>
+    </section>
   );
 };
 
