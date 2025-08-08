@@ -6,7 +6,7 @@ import ProductDetail from "@/components/ProductDetail";
 
 export default function propertyDeatilPage() {
   const router = useRouter();
-  const id = router.query.id;
+  const { id } = router.query;
   const [product, setProduct] = useState<ProductProps | null>(null);
   const [loading, setLoading] = useState(true);
 
