@@ -1,14 +1,17 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store/store";
 import FilterSidebar from "@/components/FilterSidebar";
 import ProductCard from "@/components/common/productCard";
 import { useProductLists } from "@/hooks/useProductLists";
+import { CgOverflow } from "react-icons/cg";
 
 const ProductsPage = () => {
   const { allProducts } = useProductLists();
   const filters = useSelector((state: RootState) => state.filter);
+
+  const productRef = useRef<HTMLDivElement | null>(null);
 
   const [page, setPage] = useState(1);
   const productPerPage = 25;
@@ -37,24 +40,38 @@ const ProductsPage = () => {
   }, [filtered.length]);
 
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({ top: 0, behavior: "instant" });
+    if (productRef.current) {
+      productRef.current.scrollTo({ top: 0, behavior: "smooth" });
+    }
   }, [page]);
 
   return (
-    <section>
-      <h1 className="text-2xl ml-80 md:text-3xl font-extrabold">
-        All Products
-      </h1>
-      <main className="flex flex-col md:flex-row gap-6 p-6">
-        <FilterSidebar />
-        <div className="flex flex-col w-full">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 w-full">
+    <div className="relative ">
+      <main className="flex flex-col md:flex-row">
+        <div className="sticky  overflow-y-auto  p-4">
+          {" "}
+          {/*  scrollbar-width: none -ms-overflow-style none */}
+          <div className="md:w-63 lg:w-80 bg-white rounded-lg shadow p-4 mt-10">
+            <FilterSidebar />
+          </div>
+        </div>
+
+        <div
+          ref={productRef}
+          className="flex-1 overflow-y-auto h-[calc(100vh-4rem)]"
+        >
+          <h1 className="text-2xl md:text-3xl font-extrabold mx-5 mb-3">
+            All Products
+          </h1>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 p-4">
             {paginated.map((product) => (
               <ProductCard key={product.id} {...product} />
             ))}
           </div>
 
-          <div className="flex justify-center mt-6 space-x-2">
+          <div className="flex justify-center space-x-2 my-4">
             <button disabled={page === 1} onClick={() => setPage(page - 1)}>
               Prev
             </button>
@@ -63,7 +80,7 @@ const ProductsPage = () => {
               <button
                 key={idx}
                 className={`px-4 py-2 border rounded ${
-                  page === idx + 1 ? "bg-blue-500 text-white" : "bg-white"
+                  page === idx + 1 ? "bg-gray-500 text-white" : "bg-white"
                 }`}
                 onClick={() => setPage(idx + 1)}
               >
@@ -80,7 +97,7 @@ const ProductsPage = () => {
           </div>
         </div>
       </main>
-    </section>
+    </div>
   );
 };
 
