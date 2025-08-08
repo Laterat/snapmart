@@ -5,7 +5,7 @@ import { RootState } from "@/store/store";
 import FilterSidebar from "@/components/FilterSidebar";
 import ProductCard from "@/components/common/productCard";
 import { useProductLists } from "@/hooks/useProductLists";
-import { CgOverflow } from "react-icons/cg";
+import Pill from "@/components/common/Pill";
 
 const ProductsPage = () => {
   const { allProducts } = useProductLists();
@@ -67,7 +67,12 @@ const ProductsPage = () => {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 p-4">
             {paginated.map((product) => (
-              <ProductCard key={product.id} {...product} />
+              <div key={product.id}>
+                <ProductCard {...product} />
+                <div className="flex justify-center">
+                  <Pill onclick={() => {}} label="Add to cart" />
+                </div>
+              </div>
             ))}
           </div>
 
