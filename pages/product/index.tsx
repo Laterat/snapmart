@@ -11,7 +11,7 @@ const ProductsPage = () => {
   const { allProducts } = useProductLists();
   const filters = useSelector((state: RootState) => state.filter);
 
-  const productRef = useRef<HTMLDivElement | null>(null);
+  const produtRef = useRef<HTMLDivElement | null>(null);
 
   const [page, setPage] = useState(1);
   const productPerPage = 25;
@@ -41,8 +41,8 @@ const ProductsPage = () => {
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "instant" });
-    if (productRef.current) {
-      productRef.current.scrollTo({ top: 0, behavior: "smooth" });
+    if (produtRef.current) {
+      produtRef.current.scrollTo({ top: 0, behavior: "smooth" });
     }
   }, [page]);
 
@@ -58,7 +58,7 @@ const ProductsPage = () => {
         </div>
 
         <div
-          ref={productRef}
+          ref={produtRef}
           className="flex-1 overflow-y-auto h-[calc(100vh-4rem)]"
         >
           <h1 className="text-2xl md:text-3xl font-extrabold mx-5 mb-3">
