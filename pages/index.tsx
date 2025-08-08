@@ -2,6 +2,7 @@ import Image from "next/image";
 import Hero from "../public/assets/hero.png";
 import TopRatedProducts from "@/components/TopRatedProducts";
 import HighestDiscountProducts from "@/components/HighestDiscountProducts";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -24,12 +25,14 @@ export default function Home() {
           <p className="text-base font-semibold mt-5">
             Top -rated smart phonss, Laptops, beauty and more
           </p>
-          <button className="bg-black text-white px-5 py-2 rounded-2xl w-30 mt-6 ml-10">
-            Shop Now
-          </button>
+          <Link href="/product">
+            <button className="bg-black text-white px-5 py-2 rounded-2xl w-30 mt-6 ml-10">
+              Shop Now
+            </button>
+          </Link>
         </div>
       </div>
-      <div >
+      <div>
         <TopRatedProducts />
         <HighestDiscountProducts />
       </div>
