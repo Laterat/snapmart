@@ -1,4 +1,4 @@
 const ProductDetail: React.FC = () => {
-  return <></>;
+  return <>Product Detail</>;
 };
 export default ProductDetail;

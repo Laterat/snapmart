@@ -30,5 +30,5 @@ export default function propertyDeatilPage() {
   if (!product) {
     return <p className="text-2xl font-semibold">Property Not Found</p>;
   }
-  return <ProductDetail product={product} />;
+  return <ProductDetail />;
 }
