@@ -11,12 +11,19 @@ export default function propertyDeatilPage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    if (!id) return;
     const fetchProduct = async () => {
       try {
-        const res = await axios.get(`https://dummyjson.com/products/${id}`);
+        const res = await axios.get<ProductProps>(
+          `https://dummyjson.com/products/${id}`
+        );
         setProduct(res.data);
       } catch (err) {
-        console.error("Failed to fetch the product", err);
+        if (axios.isAxiosError(err) && err.response?.status === 404) {
+          console.warn("Product not found");
+        } else {
+          console.error("Failed to fetch the product", err);
+        }
       } finally {
         setLoading(false);
       }
@@ -24,11 +31,9 @@ export default function propertyDeatilPage() {
     fetchProduct();
   }, [id]);
 
-  if (loading) {
-    return <p className="text-2xl font-semibold">Loading...</p>;
-  }
-  if (!product) {
+  if (loading) return <p className="text-2xl font-semibold">Loading...</p>;
+  if (!product)
     return <p className="text-2xl font-semibold">Property Not Found</p>;
-  }
-  return <ProductDetail />;
+
+  return <h1>{product.title}</h1>;
 }
