@@ -1,7 +1,12 @@
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store/store";
-import { addToCart, removeFromCart, clearCart } from "@/store/slices/cartSlice";
+import {
+  removeFromCart,
+  clearCart,
+  incrementQuantity,
+  decrementquantity,
+} from "@/store/slices/cartSlice";
 import Pill from "@/components/common/Pill";
 
 export default function CartPage() {
@@ -40,17 +45,13 @@ export default function CartPage() {
             <Pill
               label="-"
               customCSS="text-gray-800 hover:text-red-900"
-              onclick={() => {
-                item.quantity - 1;
-              }}
+              onclick={() => dispatch(incrementQuantit)}
             />
             <p>{item.quantity}</p>
             <Pill
               label="+"
               customCSS="text-gray-800 hover:text-red-900"
-              onclick={() => {
-                item.quantity + 1;
-              }}
+              onclick={() => }
             />
           </div>
           <p>{formatPrice(item.quantity * item.price)}</p>
