@@ -50,11 +50,13 @@ export interface Review {
   reviewerEmail: string;
 }
 
+export type ProductCardProps = Pick<
+  ProductProps,
+  "id" | "title" | "price" | "discountPercentage" | "rating" | "images"
+>;
 
-export type ProductCardProps = Pick<ProductProps, 'id' | 'title' | 'price' | 'discountPercentage' | 'rating'| 'images'>;
-
-
-export interface pill{
-    label:string;
-    onclick: ()=>void;
+export interface pill {
+  label: string;
+  onclick: () => void;
+  customCSS?: string;
 }

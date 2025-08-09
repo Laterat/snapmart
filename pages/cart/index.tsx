@@ -7,22 +7,25 @@ import Pill from "@/components/common/Pill";
 export default function CartPage() {
   const dispatch = useDispatch();
   const { items } = useSelector((state: RootState) => state.cart);
+  let itemCount = 1;
   return (
     <section className="mt-5 md:mx-20">
-      <h1>Cart</h1>
-         <div className="grid grid-cols-5">
-          <p>S.No</p>
-          <p>Product</p>
-          <p>Quantity</p>
-          <p>Unit Price</p>
-          <p>Remove Item</p>
-        </div>
+      <h1 className="font-semibold mb-4 text-lg md:text-xl lg:text-2xl">Shopping Cart</h1>
+      <div className="grid grid-cols-6">
+        <p>S.No</p>
+        <p>Product</p>
+        <p>Unit Price</p>
+        <p>Quantity</p>
+        <p>Total Price</p>
+        <p>Remove Item</p>
+      </div>
       {items.map((item) => (
-        <div className="grid grid-cols-5">
-          <p>{item.id}</p>
+        <div className="grid grid-cols-6">
+          <p>{itemCount++}</p>
           <p>{item.title}</p>
           <p>{item.price}</p>
           <p>{item.quantity}</p>
+           <p>{item.quantity}</p>
           <Pill
             label="remove"
             onclick={() => dispatch(removeFromCart(item.id))}
