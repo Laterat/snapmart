@@ -43,7 +43,15 @@ export default function CartPage() {
         <p className="text-center">Total Price</p>
         <p className="text-center">Delete Option</p>
       </div>
-      {items.length === 0?(<p className="flex justify-center my-7 font-semibold md:text:xl">Your Cart Is empty</p>):""}
+
+      {items.length === 0 ? (
+        <p className="flex justify-center my-7 font-semibold md:text:xl">
+          Your Cart Is empty
+        </p>
+      ) : (
+        ""
+      )}
+
       {items.map((item) => (
         <div className="grid grid-cols-6 px-2 py-2  rounded-md shadow border-b bg-[#F0F0F0] text-sm md:text-base">
           <p className="text-center">{itemCount++}</p>
