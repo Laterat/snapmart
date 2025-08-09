@@ -23,6 +23,11 @@ export default function CartPage() {
     });
   };
 
+  const totalPrice = items.reduce(
+    (sum, item) => sum + item.price * item.quantity,
+    0
+  );
+
   return (
     <section className="mt-5 md:mx-20">
       <h1 className="font-semibold mb-4 text-lg md:text-xl lg:text-2xl">
@@ -37,7 +42,7 @@ export default function CartPage() {
         <p>Delete Option</p>
       </div>
       {items.map((item) => (
-        <div className="grid grid-cols-6">
+        <div className="grid grid-cols-6 rounded-md shadow border-b">
           <p>{itemCount++}</p>
           <p>{item.title}</p>
           <p>${item.price}</p>
@@ -45,7 +50,7 @@ export default function CartPage() {
             <Pill
               label="-"
               customCSS="text-gray-800 hover:text-red-900"
-              onclick={() => dispatch(decrementquantity(item.id))}
+              onclick={() => dispatch(decrementQuantity(item.id))}
             />
             <p>{item.quantity}</p>
             <Pill
@@ -63,17 +68,16 @@ export default function CartPage() {
         </div>
       ))}
 
-      <div>
+      <div className="flex shadow rounded-md p-3 justify-between ">
         <div>
           <Pill label="Clear Cart" onclick={() => dispatch(clearCart())} />
         </div>
-        <div>
-          <div>
-            <p>Total</p>
-          </div>
-          <div>
-            <Pill label="Chech Out" onclick={() => {}} />
-          </div>
+        <div className="flex flex-col">
+          <p>
+            <span>Total:{formatPrice(totalPrice)}</span>
+            {}
+          </p>
+          <Pill label="Chech Out" onclick={() => {}} />
         </div>
       </div>
     </section>
