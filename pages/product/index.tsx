@@ -6,7 +6,8 @@ import FilterSidebar from "@/components/FilterSidebar";
 import ProductCard from "@/components/common/productCard";
 import { useProductLists } from "@/hooks/useProductLists";
 import Pill from "@/components/common/Pill";
-
+import { useDispatch } from "react-redux";
+import { addToCart, removeFromCart, clearCart } from "@/store/slices/cartSlice";
 const ProductsPage = () => {
   const { allProducts } = useProductLists();
   const filters = useSelector((state: RootState) => state.filter);
@@ -16,6 +17,7 @@ const ProductsPage = () => {
   const [page, setPage] = useState(1);
   const productPerPage = 25;
 
+  const dispatch = useDispatch();
   const filtered = allProducts.filter(
     (p) =>
       (!filters.category || p.category === filters.category) &&
@@ -70,7 +72,20 @@ const ProductsPage = () => {
               <div key={product.id}>
                 <ProductCard {...product} />
                 <div className="flex justify-center">
-                  <Pill onclick={() => {}} label="Add to cart" />
+                  <Pill
+                    onclick={() => {
+                      dispatch(
+                        addToCart({
+                          id: product.id,
+                          title: product.title,
+                          price: product.price,
+                          thumblain: product.thumbnail,
+                          quantity: 1,
+                        })
+                      );
+                    }}
+                    label="Add to cart"
+                  />
                 </div>
               </div>
             ))}
