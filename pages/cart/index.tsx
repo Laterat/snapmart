@@ -5,7 +5,7 @@ import {
   removeFromCart,
   clearCart,
   incrementQuantity,
-  decrementquantity,
+  decrementQuantity,
 } from "@/store/slices/cartSlice";
 import Pill from "@/components/common/Pill";
 
@@ -45,13 +45,13 @@ export default function CartPage() {
             <Pill
               label="-"
               customCSS="text-gray-800 hover:text-red-900"
-              onclick={() => dispatch(incrementQuantit)}
+              onclick={() => dispatch(decrementquantity(item.id))}
             />
             <p>{item.quantity}</p>
             <Pill
               label="+"
               customCSS="text-gray-800 hover:text-red-900"
-              onclick={() => }
+              onclick={() => dispatch(incrementQuantity(item.id))}
             />
           </div>
           <p>{formatPrice(item.quantity * item.price)}</p>
