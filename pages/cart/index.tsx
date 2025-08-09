@@ -11,18 +11,15 @@ export default function CartPage() {
     <section className="mt-5 md:mx-20">
       <h1>Cart</h1>
          <div className="grid grid-cols-5">
-          <p>S/p>
-          <p>{item.title}</p>
-          <p>{item.price}</p>
-          <p>{item.quantity}</p>
-          <Pill
-            label="remove"
-            onclick={() => dispatch(removeFromCart(item.id))}
-          />
+          <p>S.No</p>
+          <p>Product</p>
+          <p>Quantity</p>
+          <p>Unit Price</p>
+          <p>Remove Item</p>
         </div>
       {items.map((item) => (
         <div className="grid grid-cols-5">
-          <p>{items[0].id}</p>
+          <p>{item.id}</p>
           <p>{item.title}</p>
           <p>{item.price}</p>
           <p>{item.quantity}</p>
