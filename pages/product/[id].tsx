@@ -31,9 +31,18 @@ export default function propertyDeatilPage() {
     fetchProduct();
   }, [id]);
 
-  if (loading) return <p className="text-2xl font-semibold">Loading...</p>;
+  if (loading)
+    return (
+      <p className="text-2xl font-semibold flex items-center justify-center">
+        Loading...
+      </p>
+    );
   if (!product)
-    return <p className="text-2xl font-semibold">Property Not Found</p>;
+    return (
+      <p className="text-2xl font-semibold flex items-center justify-center">
+        Property Not Found
+      </p>
+    );
 
   return <ProductDetail product={product} />;
 }
