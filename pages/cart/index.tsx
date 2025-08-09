@@ -1,7 +1,6 @@
+
+
 export default function CartPage() {
-  return (
-    <>
-        Cart Page
-    </>
-  );
+
+  return <>Cart Page</>;
 }

@@ -2,21 +2,28 @@ import { ProductProps } from "@/interfaces";
 import Image from "next/image";
 import { FaStar } from "react-icons/fa";
 import user from "../public/assets/user.png";
+import Pill from "@/components/common/Pill";
 
 const ProductDetail: React.FC<{ product: ProductProps }> = ({ product }) => {
   return (
     <section className="flex  flex-col mr-15  min-w-full px-10 mt-5">
       <div className="flex w-full justify-center ">
         <div className="shadow-md rounded-2xl flex flex-col lg:w-[70%] md:grid md:grid-cols-2 md:gap-6">
-          <div className="relative shadow-md rounded-2xl w-full h-auto aspect-[150/100] mb-5 ">
+          <div className="relative md:flex md:flex-col shadow-md rounded-2xl w-full md:h-[70%] h-auto aspect-[150/100] mb-5 ">
             <Image
               src={product.images[0]}
               alt={product.title}
               fill
               className="rounded-2xl bg-gray-200 "
             />
+            
+              <div className="hidden absolute top-[110%] left-0  right-0 md:flex justify-around mb-2">
+                <Pill onclick={() => {}} label="Add to cart" />
+                <Pill onclick={() => {}} label="Buy Now" />
+              </div>
+            
           </div>
-          <div>
+          <div className="px-2">
             <h2 className="flex text-xl md:text-2xl font-semibold">
               {product.title}
             </h2>
@@ -44,6 +51,10 @@ const ProductDetail: React.FC<{ product: ProductProps }> = ({ product }) => {
                 <span className="font-semibold">Description:</span>
               </p>
               <p className="md:text-xl">{product.description}</p>
+            </div>
+            <div className="flex justify-around mb-2 md:hidden 2xl:flex">
+              <Pill onclick={() => {}} label="Add to cart" />
+              <Pill onclick={() => {}} label="Buy Now" />
             </div>
           </div>
         </div>
@@ -73,43 +84,45 @@ const ProductDetail: React.FC<{ product: ProductProps }> = ({ product }) => {
         </div>
       </div>
 
-      <div className="w-[70%]">
-        <h1 className="text-xl md:2xl font-semibold">reviews</h1>
-        {product.reviews.map((review) => (
-          <div className="flex flex-col gap-4 py-4 border-b">
-            <div className="flex flex-row items-center gap-4">
-              <Image
-                src={user}
-                alt="user Logo"
-                width={50}
-                height={30}
-                className=""
-              />
-              <div className="flex flex-col">
-                <p className="text-lg font-semibold">{review.reviewerName}</p>
-                <p className="text-lg ">{review.reviewerEmail}</p>
+      <div className="flex justify-center">
+        <div className="w-[70%] mt-6 shadow-md p-7  mb-10">
+          <h1 className="text-xl md:2xl lg:3xl font-semibold">Reviews</h1>
+          {product.reviews.map((review) => (
+            <div className="flex flex-col gap-4 py-4 border-b md:mx-10 lg:mx-20 ">
+              <div className="flex flex-row items-center gap-4">
+                <Image
+                  src={user}
+                  alt="user Logo"
+                  width={50}
+                  height={30}
+                  className=""
+                />
+                <div className="flex flex-col">
+                  <p className="text-lg font-semibold">{review.reviewerName}</p>
+                  <p>{review.reviewerEmail}</p>
+                </div>
               </div>
-            </div>
-            <div>
-              <div className="flex flex-col-2 gap-6">
-                <p className="text-xl flex">
-                  <FaStar className="text-yellow-400 mr-1 " />
-                  {product.rating}
-                </p>
-                <div>
-                  <p className="text-lg">
-                    {new Date(review.date).toLocaleDateString("en-GB", {
-                      year: "numeric",
-                      month: "2-digit",
-                      day: "2-digit",
-                    })}
+              <div>
+                <div className="flex flex-col-2 gap-6">
+                  <p className="text-xl flex">
+                    <FaStar className="text-yellow-400 mr-1 " />
+                    {product.rating}
                   </p>
-                  <p className="text-lg">{review.comment}</p>
+                  <div>
+                    <p className="text-lg">
+                      {new Date(review.date).toLocaleDateString("en-GB", {
+                        year: "numeric",
+                        month: "2-digit",
+                        day: "2-digit",
+                      })}
+                    </p>
+                    <p className="text-lg">{review.comment}</p>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </section>
   );
