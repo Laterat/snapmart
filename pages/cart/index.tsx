@@ -8,26 +8,55 @@ export default function CartPage() {
   const dispatch = useDispatch();
   const { items } = useSelector((state: RootState) => state.cart);
   let itemCount = 1;
+
+  const formatPrice = function (price: number) {
+    return price.toLocaleString("en-US", {
+      style: "currency",
+      currency: "USD",
+      minimumFractionDigits: 2,
+      // maximumSignificantDigits: 2,
+    });
+  };
+
   return (
     <section className="mt-5 md:mx-20">
-      <h1 className="font-semibold mb-4 text-lg md:text-xl lg:text-2xl">Shopping Cart</h1>
+      <h1 className="font-semibold mb-4 text-lg md:text-xl lg:text-2xl">
+        Shopping Cart
+      </h1>
       <div className="grid grid-cols-6">
         <p>S.No</p>
         <p>Product</p>
         <p>Unit Price</p>
         <p>Quantity</p>
         <p>Total Price</p>
-        <p>Remove Item</p>
+        <p>Delete Option</p>
       </div>
       {items.map((item) => (
         <div className="grid grid-cols-6">
           <p>{itemCount++}</p>
           <p>{item.title}</p>
-          <p>{item.price}</p>
-          <p>{item.quantity}</p>
-           <p>{item.quantity}</p>
+          <p>${item.price}</p>
+          <div className="flex space-x-2 items-center justify-center">
+            <Pill
+              label="-"
+              customCSS="text-gray-800 hover:text-red-900"
+              onclick={() => {
+                item.quantity - 1;
+              }}
+            />
+            <p>{item.quantity}</p>
+            <Pill
+              label="+"
+              customCSS="text-gray-800 hover:text-red-900"
+              onclick={() => {
+                item.quantity + 1;
+              }}
+            />
+          </div>
+          <p>{formatPrice(item.quantity * item.price)}</p>
           <Pill
-            label="remove"
+            label="Remove"
+            customCSS="text-gray-800 hover:text-red-900"
             onclick={() => dispatch(removeFromCart(item.id))}
           />
         </div>
