@@ -9,12 +9,48 @@ import {
 import Pill from "@/components/common/Pill";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store/store";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import { useProductLists } from "@/hooks/useProductLists";
 
 const FilterSidebar = () => {
   const dispatch = useDispatch();
   const { category, brand, rating, sortByPrice } = useSelector(
     (state: RootState) => state.filter
   );
+
+  const { allProducts } = useProductLists();
+
+  const [categories, setCategories] = useState<string[]>([]);
+  const [brands, setBrands] = useState<string[]>([]);
+
+  useEffect(() => {
+    if (allProducts.length === 0) return;
+
+    let filteredByCategory = allProducts;
+    if (category) {
+      filteredByCategory = allProducts.filter(
+        (product) => product.category === category
+      );
+    }
+
+    let filteredByBrand = allProducts;
+    if (brand) {
+      filteredByBrand = allProducts.filter(
+        (product) => product.brand === brand
+      );
+    }
+
+    const updatedCategory = [
+      ...new Set(filteredByBrand.map((product) => product.category)),
+    ].sort();
+    setCategories(updatedCategory);
+
+    const updatedBrand = [
+      ...new Set(filteredByCategory.map((product) => product.brand)),
+    ].sort();
+    setBrands(updatedBrand);
+  }, [brand, category, allProducts]);
 
   return (
     <div className="space-y-4">
@@ -27,9 +63,11 @@ const FilterSidebar = () => {
           onChange={(e) => dispatch(setCategory(e.target.value))}
         >
           <option value="">All</option>
-          <option value="smartphones">Smartphones</option>
-          <option value="laptops">Laptops</option>
-          <option value="fragrances">Fragrances</option>
+          {categories.map((cat) => (
+            <option key={category} value={cat}>
+              {cat}
+            </option>
+          ))}
         </select>
       </div>
 
@@ -42,9 +80,11 @@ const FilterSidebar = () => {
           onChange={(e) => dispatch(setBrand(e.target.value))}
         >
           <option value="">All</option>
-          <option value="Apple">Apple</option>
-          <option value="Samsung">Samsung</option>
-          <option value="Huawei">Huawei</option>
+          {brands.map((b) => (
+            <option key={b} value={b}>
+              {b}
+            </option>
+          ))}
         </select>
       </div>
 
@@ -70,7 +110,9 @@ const FilterSidebar = () => {
         <select
           value={sortByPrice}
           className="border border-gray-500 rounded-sm h-10 px-2 "
-          onChange={(e) => dispatch(setSortByPrice(e.target.value as any))}
+          onChange={(e) =>
+            dispatch(setSortByPrice(e.target.value as "asc" | "desc" | ""))
+          }
         >
           <option className="w-full" value="">
             None
