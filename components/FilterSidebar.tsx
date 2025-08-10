@@ -56,8 +56,11 @@ const FilterSidebar = () => {
     <div className="space-y-4">
       {/* Category */}
       <div className="flex flex-col space-y-3">
-        <label className="text-2xl font-semibold">Category</label>
+        <label htmlFor="category" className="text-2xl font-semibold">
+          Category
+        </label>
         <select
+          id="category"
           value={category}
           className="border border-gray-500 rounded-sm h-10 px-2 "
           onChange={(e) => dispatch(setCategory(e.target.value))}
@@ -73,8 +76,11 @@ const FilterSidebar = () => {
 
       {/* Brand */}
       <div className="flex flex-col space-y-3">
-        <label className="text-2xl font-semibold">Brand</label>
+        <label htmlFor="brand" className="text-2xl font-semibold">
+          Brand
+        </label>
         <select
+          id="brand"
           value={brand}
           className="border border-gray-500 rounded-sm h-10 px-2 "
           onChange={(e) => dispatch(setBrand(e.target.value))}
@@ -90,8 +96,11 @@ const FilterSidebar = () => {
 
       {/* Rating */}
       <div className="flex flex-col space-y-3">
-        <label className="text-2xl font-semibold">Rating</label>
+        <label htmlFor="rating" className="text-2xl font-semibold">
+          Rating
+        </label>
         <select
+          id="rating"
           value={rating}
           className="border border-gray-500 rounded-sm h-10 px-2 "
           onChange={(e) => dispatch(setRating(Number(e.target.value)))}
@@ -106,8 +115,11 @@ const FilterSidebar = () => {
 
       {/* Sort */}
       <div className="flex flex-col space-y-3">
-        <label className="text-2xl font-semibold">Sort by Price</label>
+        <label htmlFor="sort" className="text-2xl font-semibold">
+          Sort by Price
+        </label>
         <select
+          id="sort"
           value={sortByPrice}
           className="border border-gray-500 rounded-sm h-10 px-2 "
           onChange={(e) =>
