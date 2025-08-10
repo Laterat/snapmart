@@ -3,8 +3,11 @@ import Image from "next/image";
 import { FaStar } from "react-icons/fa";
 import user from "../public/assets/user.png";
 import Pill from "@/components/common/Pill";
+import { addToCart } from "@/store/slices/cartSlice";
+import { useDispatch, UseDispatch } from "react-redux";
 
 const ProductDetail: React.FC<{ product: ProductProps }> = ({ product }) => {
+  const dispatch = useDispatch();
   return (
     <section className="flex  flex-col mr-15  min-w-full px-10 mt-5">
       <div className="flex w-full justify-center ">
@@ -16,12 +19,24 @@ const ProductDetail: React.FC<{ product: ProductProps }> = ({ product }) => {
               fill
               className="rounded-2xl bg-gray-200 "
             />
-            
-              <div className="hidden absolute top-[110%] left-0  right-0 md:flex justify-around mb-2">
-                <Pill onclick={() => {}} label="Add to cart" />
-                <Pill onclick={() => {}} label="Buy Now" />
-              </div>
-            
+
+            <div className="hidden absolute top-[110%] left-0  right-0 md:flex justify-around mb-2">
+              <Pill
+                onclick={() => {
+                  dispatch(
+                    addToCart({
+                      id: product.id,
+                      title: product.title,
+                      price: product.price,
+                      thumblain: product.thumbnail,
+                      quantity: 1,
+                    })
+                  );
+                }}
+                label="Add to cart"
+              />
+              <Pill onclick={() => {}} label="Buy Now" />
+            </div>
           </div>
           <div className="px-2">
             <h2 className="flex text-xl md:text-2xl font-semibold">
@@ -52,8 +67,21 @@ const ProductDetail: React.FC<{ product: ProductProps }> = ({ product }) => {
               </p>
               <p className="md:text-xl">{product.description}</p>
             </div>
-            <div className="flex justify-around mb-2 md:hidden 2xl:flex">
-              <Pill onclick={() => {}} label="Add to cart" />
+            <div className="flex justify-around mb-2 md:hidden ">
+              <Pill
+                onclick={() => {
+                  dispatch(
+                    addToCart({
+                      id: product.id,
+                      title: product.title,
+                      price: product.price,
+                      thumblain: product.thumbnail,
+                      quantity: 1,
+                    })
+                  );
+                }}
+                label="Add to cart"
+              />
               <Pill onclick={() => {}} label="Buy Now" />
             </div>
           </div>

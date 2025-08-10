@@ -107,7 +107,12 @@ export default function ContactPage() {
             <p>+251 900000000</p>
           </div>
           <div className=" mt-4 flex items-center justify-center space-x-4">
-            <Image src={instagram} alt="instagram Logo" width={50} height={30} />
+            <Image
+              src={instagram}
+              alt="instagram Logo"
+              width={50}
+              height={30}
+            />
             <Image src={telegram} alt="telegram Logo" width={50} height={30} />
             <Image src={email} alt="email Logo" width={50} height={30} />
           </div>
