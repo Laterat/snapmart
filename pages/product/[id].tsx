@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { ProductProps } from "@/interfaces";
 import ProductDetail from "@/components/ProductDetail";
 
-export default function propertyDeatilPage() {
+export default function PropertyDeatilPage() {
   const router = useRouter();
   const { id } = router.query;
   const [product, setProduct] = useState<ProductProps | null>(null);
