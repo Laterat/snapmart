@@ -16,18 +16,18 @@ export default function ContactPage() {
           <p className="text-justify md:text-lg ">
             Welcome to SnapMart — your go-to destination for discovering quality
             products at unbeatable prices. Whether you're looking for the latest
-            gadgets, fashion essentials, or everyday must-haves, we've got you
+            gadgets, fashion essentials, or everyday must-haves, we have got you
             covered. At SnapMart, we believe shopping should be simple, fast,
-            and enjoyable. That’s why we’ve built a sleek, responsive online
+            and enjoyable. That is why we have built a sleek, responsive online
             store using modern tools like DummyJSON to bring you a seamless demo
             shopping experience.
-          </p>
+          </p> 
           <p className="text-justify md:text-lg ">
-            While SnapMart is a demo project, it's designed with real-world
+            While SnapMart is a demo project, it is designed with real-world
             features — from dynamic product listings to smart filters and
             user-friendly design — helping you imagine what a full e-commerce
             experience would feel like. Built for developers, learners, and
-            design enthusiasts, SnapMart showcases what’s possible with tools
+            design enthusiasts, SnapMart showcases what iss possible with tools
             like Next.js, Tailwind CSS, and API integrations. Thank you for
             exploring SnapMart — where great design meets practical learning.
           </p>
