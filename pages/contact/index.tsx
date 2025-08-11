@@ -15,7 +15,7 @@ export default function ContactPage() {
         <div className="shadow bg-gray-100 px-6 py-4 rounded-2xl space-y-4">
           <p className="text-justify md:text-lg ">
             Welcome to SnapMart — your go-to destination for discovering quality
-            products at unbeatable prices. Whether you're looking for the latest
+            products at unbeatable prices. Whether you are looking for the latest
             gadgets, fashion essentials, or everyday must-haves, we have got you
             covered. At SnapMart, we believe shopping should be simple, fast,
             and enjoyable. That is why we have built a sleek, responsive online

@@ -8,6 +8,7 @@ import { useDispatch } from "react-redux";
 
 const ProductDetail: React.FC<{ product: ProductProps }> = ({ product }) => {
   const dispatch = useDispatch();
+  let reviewCount = 1;
   return (
     <section className="flex  flex-col mr-15  min-w-full px-10 mt-5">
       <div className="flex w-full justify-center ">
@@ -115,8 +116,12 @@ const ProductDetail: React.FC<{ product: ProductProps }> = ({ product }) => {
       <div className="flex justify-center">
         <div className="w-[70%] mt-6 shadow-md p-7  mb-10">
           <h1 className="text-xl md:2xl lg:3xl font-semibold">Reviews</h1>
+
           {product.reviews.map((review) => (
-            <div className="flex flex-col gap-4 py-4 border-b md:mx-10 lg:mx-20 ">
+            <div
+              key={reviewCount}
+              className="flex flex-col gap-4 py-4 border-b md:mx-10 lg:mx-20 "
+            >
               <div className="flex flex-row items-center gap-4">
                 <Image
                   src={user}
@@ -148,6 +153,7 @@ const ProductDetail: React.FC<{ product: ProductProps }> = ({ product }) => {
                   </div>
                 </div>
               </div>
+              {(reviewCount += 1)}
             </div>
           ))}
         </div>
