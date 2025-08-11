@@ -4,7 +4,7 @@ import { FaStar } from "react-icons/fa";
 import user from "../public/assets/user.png";
 import Pill from "@/components/common/Pill";
 import { addToCart } from "@/store/slices/cartSlice";
-import { useDispatch, UseDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 
 const ProductDetail: React.FC<{ product: ProductProps }> = ({ product }) => {
   const dispatch = useDispatch();
