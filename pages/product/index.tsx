@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import axios from "axios";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store/store";
 import FilterSidebar from "@/components/FilterSidebar";
@@ -7,7 +6,7 @@ import ProductCard from "@/components/common/productCard";
 import { useProductLists } from "@/hooks/useProductLists";
 import Pill from "@/components/common/Pill";
 import { useDispatch } from "react-redux";
-import { addToCart, removeFromCart, clearCart } from "@/store/slices/cartSlice";
+import { addToCart } from "@/store/slices/cartSlice";
 const ProductsPage = () => {
   const { allProducts } = useProductLists();
   const filters = useSelector((state: RootState) => state.filter);

@@ -10,7 +10,6 @@ import Pill from "@/components/common/Pill";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store/store";
 import { useState, useEffect } from "react";
-import axios from "axios";
 import { useProductLists } from "@/hooks/useProductLists";
 
 const FilterSidebar = () => {
