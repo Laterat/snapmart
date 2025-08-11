@@ -65,9 +65,7 @@ const Header = () => {
           </button>
         </div>
 
-        {/* Search + Cart + Login */}
         <div className="flex items-center justify-end gap-4 p-4">
-          {/* Search */}
           <div className="relative w-full md:w-auto">
             <input
               type="text"
@@ -78,7 +76,6 @@ const Header = () => {
             <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
           </div>
 
-          {/* Cart */}
           <Link href="/cart" className="relative inline-block">
             <Image
               src={cart}
@@ -97,14 +94,12 @@ const Header = () => {
             )}
           </Link>
 
-          {/* Login */}
           <Link href="/login">
             <Image src={login} alt="User login" width={50} height={50} />
           </Link>
         </div>
       </div>
 
-      {/* Mobile Overlay Menu */}
       {menuOpen && (
         <div
           className="fixed top-10 right-[10%] w-[50%] bg-white shadow-lg md:hidden animate-slideDown"
@@ -116,7 +111,6 @@ const Header = () => {
         </div>
       )}
 
-      {/* Animation keyframes */}
       <style jsx>{`
         @keyframes slideDown {
           from {
