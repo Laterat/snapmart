@@ -10,10 +10,13 @@ import {
 import Link from "next/link";
 import Pill from "@/components/common/Pill";
 import Image from "next/image";
+import { useRouter } from "next/router";
 
 export default function CartPage() {
   const dispatch = useDispatch();
   const { items } = useSelector((state: RootState) => state.cart);
+  const router = useRouter();
+
   let itemCount = 1;
 
   const formatPrice = function (price: number) {
@@ -106,7 +109,7 @@ export default function CartPage() {
           <Pill
             customCSS="cursor-pointer bg-gray-200 active:bg-gray-300 px-4 py-2 text-xl text-red-700 rounded-md "
             label="Chech Out"
-            onclick={() => {}}
+            onclick={() => router.push("/checkOut")}
           />
         </div>
       </div>
