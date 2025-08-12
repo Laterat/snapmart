@@ -25,7 +25,7 @@ export default function Home() {
             Best Prices
           </p>
           <p className="text-sm  lg:text-base font-semibold mt-5 hidden md:flex">
-            Top -rated smart phonss, Laptops, beauty and more
+            Top rated smart phonss, Laptops, beauty and more
           </p>
           <Link href="/product">
             <button className="bg-black text-white px-5 py-2 rounded-2xl w-fit md:w-30 mt-6 md:ml-10">
