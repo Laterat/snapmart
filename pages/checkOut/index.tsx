@@ -3,7 +3,6 @@ import { RootState } from "@/store/store";
 import Image from "next/image";
 import { useState } from "react";
 import { useRouter } from "next/router";
-import { UseDispatch } from "react-redux";
 import { clearCart } from "@/store/slices/cartSlice";
 
 export default function CheckOutPage() {

@@ -33,6 +33,8 @@ const Header = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
+  const [highlighted, setHighlighted] = useState(-1);
+
   const handleSearch = (term = searchTerm) => {
     console.log("handleSearch called with term:", term);
     if (term.trim()) {
@@ -68,6 +70,10 @@ const Header = () => {
 
     return () => document.removeEventListener("mousedown", handleClick);
   }, []);
+
+  useEffect(() => {
+    setHighlighted(-1);
+  }, [suggestions]);
 
   const renderNavLinks = () => (
     <ul className="flex flex-col md:flex-row items-center gap-4 font-semibold lg:text-xl">
@@ -120,8 +126,29 @@ const Header = () => {
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               onKeyDown={(e) => {
-                if (e.key === "Enter") {
-                  handleSearch();
+                // if (e.key === "Enter") {
+                //   handleSearch();
+                // }
+                if (e.key === "ArrowDown") {
+                  e.preventDefault();
+                  setHighlighted((prev) =>
+                    prev < suggestions.length - 1 ? prev + 1 : 0
+                  );
+                } else if (e.key === "ArrowUp") {
+                  e.preventDefault();
+                  setHighlighted((prev) =>
+                    prev > 0 ? prev - 1 : suggestions.length - 1
+                  );
+                } else if (e.key === "Enter") {
+                  if (highlighted >= 0 && suggestions[highlighted]) {
+                    e.preventDefault();
+                    const selected = suggestions[highlighted];
+                    setSearchTerm(selected);
+                    setSuggestions([]);
+                    handleSearch(selected);
+                  } else {
+                    handleSearch();
+                  }
                 }
               }}
               placeholder="Search products"
@@ -142,19 +169,20 @@ const Header = () => {
                   <li
                     key={index}
                     role="option"
+                    aria-selected={highlighted === index}
                     tabIndex={0}
-                    className="px-4 py-2 cursor-pointer hover:bg-gray-200"
+                    className={`px-4 py-2 cursor-pointer ${
+                      highlighted === index
+                        ? "bg-gray-200"
+                        : "hover:bg-gray-200"
+                    }`}
                     onClick={() => {
                       setSearchTerm(title);
                       setSuggestions([]);
                       handleSearch(title);
                     }}
-                    onKeyDown={(e) => {
-                      if (e.key === "Enter") {
-                        setSearchTerm(title);
-                        setSuggestions([]);
-                        handleSearch(title);
-                      }
+                    onMouseEnter={() => {
+                      setHighlighted(index);
                     }}
                   >
                     {title}
