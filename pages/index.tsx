@@ -18,9 +18,7 @@ export default function Home() {
           <p className="text-xl md:text-5xl font-extrabold ">
             Discover Quality
           </p>
-          <p className="text-xl md:text-5xl font-extrabold ">
-            Products at the
-          </p>
+          <p className="text-xl md:text-5xl font-extrabold ">Products at the</p>
           <p className="text-xl md:text-5xl font-extrabold ">Best Prices</p>
           <p className="text-sm lg:text-base font-semibold mt-5 hidden md:flex">
             Top -rated smart phonss, Laptops, beauty and more

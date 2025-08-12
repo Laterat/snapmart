@@ -15,13 +15,13 @@ export default function ContactPage() {
         <div className="shadow bg-gray-100 px-6 py-4 rounded-2xl space-y-4">
           <p className="text-justify md:text-lg ">
             Welcome to SnapMart — your go-to destination for discovering quality
-            products at unbeatable prices. Whether you are looking for the latest
-            gadgets, fashion essentials, or everyday must-haves, we have got you
-            covered. At SnapMart, we believe shopping should be simple, fast,
-            and enjoyable. That is why we have built a sleek, responsive online
-            store using modern tools like DummyJSON to bring you a seamless demo
-            shopping experience.
-          </p> 
+            products at unbeatable prices. Whether you are looking for the
+            latest gadgets, fashion essentials, or everyday must-haves, we have
+            got you covered. At SnapMart, we believe shopping should be simple,
+            fast, and enjoyable. That is why we have built a sleek, responsive
+            online store using modern tools like DummyJSON to bring you a
+            seamless demo shopping experience.
+          </p>
           <p className="text-justify md:text-lg ">
             While SnapMart is a demo project, it is designed with real-world
             features — from dynamic product listings to smart filters and

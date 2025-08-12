@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import logo from "../../public/assets/logo.png";
 import login from "../../public/assets/login.png";
@@ -9,6 +9,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store/store";
+import { useRouter } from "next/router";
+import { useProductLists } from "@/hooks/useProductLists";
 
 const navLinks = [
   { name: "Home", path: "/" },
@@ -21,6 +23,51 @@ const Header = () => {
   const pathname = usePathname();
   const { items } = useSelector((state: RootState) => state.cart);
   const [menuOpen, setMenuOpen] = useState(false);
+
+  const { allProducts } = useProductLists();
+
+  const [searchTerm, setSearchTerm] = useState("");
+  const [suggestions, setSuggestions] = useState<string[]>([]);
+  const router = useRouter();
+
+  const containerRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const handleSearch = (term = searchTerm) => {
+    console.log("handleSearch called with term:", term);
+    if (term.trim()) {
+      router.push(`/product?search=${encodeURIComponent(term.trim())}`);
+    } else {
+      router.push("/product");
+    }
+  };
+
+  useEffect(() => {
+    if (searchTerm.length === 0) {
+      setSuggestions([]);
+      return;
+    }
+
+    const termLower = searchTerm.toLowerCase();
+    const matchedTitles = allProducts
+      .map((product) => product.title)
+      .filter((title) => title && title.toLowerCase().includes(termLower));
+    setSuggestions(matchedTitles.slice(0, 7));
+  }, [searchTerm, allProducts]);
+
+  useEffect(() => {
+    const handleClick = (e: MouseEvent) => {
+      if (
+        containerRef.current &&
+        !containerRef.current.contains(e.target as Node)
+      ) {
+        setSuggestions([]);
+      }
+    };
+    document.addEventListener("mousedown", handleClick);
+
+    return () => document.removeEventListener("mousedown", handleClick);
+  }, []);
 
   const renderNavLinks = () => (
     <ul className="flex flex-col md:flex-row items-center gap-4 font-semibold lg:text-xl">
@@ -66,14 +113,55 @@ const Header = () => {
         </div>
 
         <div className="flex items-center justify-end gap-4 p-4">
-          <div className="relative w-full md:w-auto">
+          <div className="relative w-full md:w-auto" ref={containerRef}>
             <input
+              ref={inputRef}
               type="text"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  handleSearch();
+                }
+              }}
               placeholder="Search products"
               className="w-full md:w-64 h-10 pl-10 pr-4 border rounded-full focus:outline-none focus:ring-2 focus:ring-gray-500"
               aria-label="Search products"
+              autoComplete="off"
             />
-            <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+            <FaSearch
+              onClick={() => handleSearch()}
+              className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400"
+            />
+            {suggestions.length > 0 && (
+              <ul
+                className="absolute z-50 w-full bg-white border border-gray-300 rounded-md max-h-60 overflow-y-auto mt-1 shadow-lg"
+                role="listbox"
+              >
+                {suggestions.map((title, index) => (
+                  <li
+                    key={index}
+                    role="option"
+                    tabIndex={0}
+                    className="px-4 py-2 cursor-pointer hover:bg-gray-200"
+                    onClick={() => {
+                      setSearchTerm(title);
+                      setSuggestions([]);
+                      handleSearch(title);
+                    }}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter") {
+                        setSearchTerm(title);
+                        setSuggestions([]);
+                        handleSearch(title);
+                      }
+                    }}
+                  >
+                    {title}
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
 
           <Link href="/cart" className="relative inline-block">

@@ -53,7 +53,10 @@ export default function CartPage() {
       )}
 
       {items.map((item) => (
-        <div key={item.id} className="grid grid-cols-6 px-2 py-2  rounded-md shadow border-b bg-[#F0F0F0] text-sm md:text-base">
+        <div
+          key={item.id}
+          className="grid grid-cols-6 px-2 py-2  rounded-md shadow border-b bg-[#F0F0F0] text-sm md:text-base"
+        >
           <p className="text-center">{itemCount++}</p>
           <div className="flex items-center space-x-2">
             <Image

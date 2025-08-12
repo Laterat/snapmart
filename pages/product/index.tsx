@@ -7,21 +7,34 @@ import { useProductLists } from "@/hooks/useProductLists";
 import Pill from "@/components/common/Pill";
 import { useDispatch } from "react-redux";
 import { addToCart } from "@/store/slices/cartSlice";
+import { useRouter } from "next/router";
+import { FaArrowLeft } from "react-icons/fa";
+import Link from "next/link";
+
 const ProductsPage = () => {
   const { allProducts } = useProductLists();
   const filters = useSelector((state: RootState) => state.filter);
+
+  const router = useRouter();
+  const searchTerm = (router.query.search as string) || "";
 
   const productRef = useRef<HTMLDivElement | null>(null);
 
   const [page, setPage] = useState(1);
   const productPerPage = 25;
 
+  const searchTermLower = searchTerm.toLowerCase();
   const dispatch = useDispatch();
   const filtered = allProducts.filter(
     (p) =>
       (!filters.category || p.category === filters.category) &&
       (!filters.brand || p.brand === filters.brand) &&
-      p.rating >= filters.rating
+      p.rating >= filters.rating &&
+      ((p.title && p.title.toLowerCase().includes(searchTermLower)) ||
+        (p.brand && p.brand.toLowerCase().includes(searchTermLower)) ||
+        (p.category && p.category.toLowerCase().includes(searchTermLower)) ||
+        (p.tags &&
+          p.tags.some((tag) => tag.toLowerCase().includes(searchTermLower))))
   );
 
   if (filters.sortByPrice === "asc") {
@@ -38,7 +51,7 @@ const ProductsPage = () => {
 
   useEffect(() => {
     setPage(1);
-  }, [filtered.length]);
+  }, [filtered.length, searchTerm]);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "instant" });
@@ -51,8 +64,6 @@ const ProductsPage = () => {
     <div className="relative ">
       <main className="flex flex-col md:flex-row">
         <div className="sticky  overflow-y-auto  p-4">
-          {" "}
-          {/*  scrollbar-width: none -ms-overflow-style none */}
           <div className="md:w-63 lg:w-80 bg-white rounded-lg shadow p-4 mt-10">
             <FilterSidebar />
           </div>
@@ -63,7 +74,20 @@ const ProductsPage = () => {
           className="flex-1 overflow-y-auto h-[calc(100vh-4rem)]"
         >
           <h1 className="text-2xl md:text-3xl font-extrabold mx-5 mb-3">
-            All Products
+            {searchTerm ? (
+              < div className="flex gap-[10%]">
+                <Link
+                  href="/product"
+                  aria-label="Back to all products"
+                  className="text-gray-600 hover:text-gray-900"
+                >
+                  <FaArrowLeft className=" h-5 md:h-7 lg:h-12 cursor-pointer" />
+                </Link>
+                {`Search results for "${searchTerm}"`}
+              </div>
+            ) : (
+              "All Products"
+            )}
           </h1>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 p-4">
