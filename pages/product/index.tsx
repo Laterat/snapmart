@@ -15,6 +15,8 @@ const ProductsPage = () => {
   const { allProducts } = useProductLists();
   const filters = useSelector((state: RootState) => state.filter);
 
+  const [filterSide, setFilterSide] = useState(false);
+
   const router = useRouter();
   const searchTerm = (router.query.search as string) || "";
 
@@ -64,8 +66,17 @@ const ProductsPage = () => {
     <div className="relative ">
       <main className="flex flex-col md:flex-row">
         <div className="sticky  overflow-y-auto  p-4">
-          <div className="md:w-63 lg:w-80 bg-white rounded-lg shadow p-4 mt-10">
-            <FilterSidebar />
+          <div className=" md:w-63 lg:w-80 bg-white rounded-lg shadow p-4 md:mt-10">
+            <div className="md:hidden flex justify- mb-4">
+              <Pill
+                onclick={() => setFilterSide(!filterSide)}
+                label={filterSide ? "Hide filters" : "Show filters"}
+              />
+            </div>
+
+            <div className={`${filterSide ? "block" : "hidden"} md:block`}>
+              <FilterSidebar />
+            </div>
           </div>
         </div>
 
@@ -75,7 +86,7 @@ const ProductsPage = () => {
         >
           <h1 className="text-2xl md:text-3xl font-extrabold mx-5 mb-3">
             {searchTerm ? (
-              < div className="flex gap-[10%]">
+              <div className="flex gap-[10%]">
                 <Link
                   href="/product"
                   aria-label="Back to all products"
