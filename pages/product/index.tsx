@@ -23,7 +23,7 @@ const ProductsPage = () => {
   const productRef = useRef<HTMLDivElement | null>(null);
 
   const [page, setPage] = useState(1);
-  const productPerPage = 25;
+  const productPerPage = 24;
 
   const searchTermLower = searchTerm.toLowerCase();
   const dispatch = useDispatch();
