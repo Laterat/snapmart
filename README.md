@@ -176,26 +176,13 @@ const filtered = allProducts.filter(
 ## 🧩 Future Enhancements
 
 - User authentication & profiles
-- Persistent cart using localStorage
+- Persistent cart using with buy now
 - Wishlist feature
 - Payment integration (Stripe/PayPal)
 - Backend API with database
 
 ---
 
-## 📄 License
-
-This project is licensed under the **MIT License**.
-
----
-
 ## 👨‍💻 Author
 
 **Latera Mekonnen**
-💼 _UX Researcher & Software Developer_
-📧 [latera@example.com](mailto:latera@example.com)
-
----
-
-If you don’t already have a **`demo.gif`**, I can guide you on how to **record a quick screen capture** of your app and **convert it into a GIF** so it fits perfectly in the README.
-Do you want me to prepare that recording guide for you?
