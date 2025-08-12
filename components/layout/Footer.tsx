@@ -8,7 +8,7 @@ const Footer: React.FC = () => {
   return (
     <footer className="bg-[#625C5C] ">
       <div className="bg-[#9AA98B] h-6"></div>
-      <div className="flex  justify-between mx-15 mt-10">
+      <div className="flex flex-col md:flex-row justify-between mx-15 mt-10">
         <div>
           <h1 className="font-Tauri text-white text-3xl">SnapMart</h1>
           <p>SnapMart is a demo e-commerce platform powered by </p>
