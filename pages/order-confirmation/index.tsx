@@ -6,7 +6,7 @@ export default function OrderConfirmation() {
   const { orderId } = router.query;
 
   return (
-    <section className="flex flex-col items-center justify-center mt-20">
+    <section className="flex flex-col items-center justify-center mt-20 mb-7">
       <h1 className="text-3xl font-bold text-green-600">
         ✅ Order Successful!
       </h1>

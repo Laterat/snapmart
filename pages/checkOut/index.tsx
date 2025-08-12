@@ -124,7 +124,7 @@ export default function CheckOutPage() {
 
               <button
                 type="submit"
-                className="bg-red-600 text-white px-5 py-2 rounded-md hover:bg-red-700 w-full"
+                className="bg-red-600 text-white px-5 py-2 rounded-md hover:bg-red-700 w-full "
               >
                 Place Order
               </button>
