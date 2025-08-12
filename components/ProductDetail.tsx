@@ -5,10 +5,26 @@ import user from "../public/assets/user.png";
 import Pill from "@/components/common/Pill";
 import { addToCart } from "@/store/slices/cartSlice";
 import { useDispatch } from "react-redux";
+import { useRouter } from "next/router";
 
 const ProductDetail: React.FC<{ product: ProductProps }> = ({ product }) => {
   const dispatch = useDispatch();
+  const router = useRouter();
+
   let reviewCount = 1;
+  const handleBuyNow = () => {
+    dispatch(
+      addToCart({
+        id: product.id,
+        title: product.title,
+        price: product.price,
+        thumblain: product.thumbnail,
+        quantity: 1,
+      })
+    );
+    router.push("/checkOut");
+  };
+
   return (
     <section className="flex  flex-col mr-15  min-w-full px-10 mt-5">
       <div className="flex w-full justify-center ">
@@ -36,7 +52,7 @@ const ProductDetail: React.FC<{ product: ProductProps }> = ({ product }) => {
                 }}
                 label="Add to cart"
               />
-              <Pill onclick={() => {}} label="Buy Now" />
+              <Pill onclick={handleBuyNow} label="Buy Now" />
             </div>
           </div>
           <div className="px-2">
@@ -83,7 +99,7 @@ const ProductDetail: React.FC<{ product: ProductProps }> = ({ product }) => {
                 }}
                 label="Add to cart"
               />
-              <Pill onclick={() => {}} label="Buy Now" />
+              <Pill onclick={handleBuyNow} label="Buy Now" />
             </div>
           </div>
         </div>
