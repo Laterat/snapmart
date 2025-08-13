@@ -51,6 +51,7 @@ _Demonstration of SnapMart's product browsing, filtering, and cart features._
 | **State Management** | Redux Toolkit              |
 | **Icons**            | React Icons                |
 | **Image Handling**   | Next.js Image Optimization |
+| **Api**              | dummyjson                  |
 
 ---
 
