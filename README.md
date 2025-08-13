@@ -73,6 +73,9 @@ snapmart/
 |    ├── TopRatedProducts.tsx
 |
 ├── hooks/                # Custom hooks (e.g., useProductLists)
+|
+├── interfaces/index.tsx
+|
 ├── pages/                # Next.js pages
 │   ├── index.tsx         # Home page
 │   └── product/[id].tsx  # Product detail page
