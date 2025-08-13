@@ -62,8 +62,13 @@ snapmart/
 ├── components/           # Reusable components
 │   ├── common/           # Common UI components (ProductCard, Pill, etc.)
 │   ├── FilterSidebar.tsx # Sidebar for filters
-│   ├── Header.tsx        # Navigation bar
-│   └── ...
+│   ├── layout            # layout to all the pages
+│      └── Header.tsx
+       └── Footer.tsx
+       └── Layout.tsx
+     ├── Header.tsx   
+|   └── ...
+|    
 ├── hooks/                # Custom hooks (e.g., useProductLists)
 ├── pages/                # Next.js pages
 │   ├── index.tsx         # Home page
