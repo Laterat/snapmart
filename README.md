@@ -115,15 +115,9 @@ cd snapmart
 npm install
 ```
 
-### **3. Create `.env.local` file**
 
-Add your environment variables:
 
-```env
-NEXT_PUBLIC_API_URL=https://your-api-url.com
-```
-
-### **4. Run development server**
+### **3. Run development server**
 
 ```bash
 npm run dev
