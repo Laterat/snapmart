@@ -72,20 +72,28 @@ snapmart/
 |    ├── ProductDetail.tsx
 |    ├── TopRatedProducts.tsx
 |
-├── hooks/                # Custom hooks (e.g., useProductLists)
+├── hooks/useProductLists.ts         # Custom hooks 
 |
 ├── interfaces/index.tsx
 |
 ├── pages/  # Next.js pages
-|   ├──                 
+|   ├── cart/index.tsx  
+|   ├── checkOut/index.tsx   
+|   ├── contact/index.tsx   
+|   ├── order-confirmation/index.tsx                 
 │   ├── index.tsx         # Home page
-│   └── product/[id].tsx  # Product detail page
+│   └── product/  # Product detail page
+|           └──  [id].tsx
+|           └── index.tsx
+|
 ├── public/assets/        # Static assets (logo, images, demo GIF)
+|
 ├── store/    # Redux store & slices
 |    ├── slices
 |           └── cartSlice.ts      
 |           └── filterSlice.ts  
-|    ├── store.ts           
+|    ├── store.ts 
+|          
 ├── styles/global.css               # Global styles
 └── README.md
 ```
