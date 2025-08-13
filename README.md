@@ -12,7 +12,7 @@ Snapmart is a modern, scalable e-commerce web application built with Next.js and
 
 ### **Core Functionality**
 
-- **Dynamic Product Listing** – Fetch and display products from the backend.
+- **Dynamic Product Listing** – Fetch and display products from the dummyJson.
 - **Advanced Filtering & Sorting**:
 
   - Filter by **Category**
@@ -30,7 +30,7 @@ Snapmart is a modern, scalable e-commerce web application built with Next.js and
 - **Filter Sidebar** with clickable filter options and clear filter tags.
 - **Product Cards** with image, title, price, and ratings.
 - **Pill-style active filters** displayed above the product list.
-- **Navbar** with logo, search bar, cart icon, and login/register buttons.
+- **Navbar** with logo, home, cart, product, contact us search bar, cart icon, and login/register buttons.
 
 ---
 
