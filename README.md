@@ -1,10 +1,10 @@
-# 🛒  SnapMart
+# 🛒 SnapMart
 
 ## OverView
 
 Snapmart is a modern, scalable e-commerce web application built with Next.js and React, designed to deliver a seamless shopping experience. It leverages a robust frontend stack including Redux Toolkit, Tailwind CSS, and TypeScript to ensure maintainability, performance, and developer productivity.
 
- It provides a smooth online shopping experience with advanced product filtering, search functionality, and a modern responsive UI.
+It provides a smooth online shopping experience with advanced product filtering, search functionality, and a modern responsive UI.
 
 ---
 
@@ -60,15 +60,18 @@ _Demonstration of SnapMart's product browsing, filtering, and cart features._
 ```
 snapmart/
 ├── components/           # Reusable components
-│   ├── common/           # Common UI components (ProductCard, Pill, etc.)
-│   ├── FilterSidebar.tsx # Sidebar for filters
+│   ├── common/           # Common UI components
+|      └── ProductCard.tsx
+|      └── Pill.tsx
 │   ├── layout            # layout to all the pages
 │      └── Header.tsx
-       └── Footer.tsx
-       └── Layout.tsx
-     ├── Header.tsx   
-|   └── ...
-|    
+|      └── Footer.tsx
+|      └── Layout.tsx
+|    ├── FilterSidebar.tsx # Sidebar for filters
+|    ├── HighestDiscountProducts.tsx
+|    ├── ProductDetail.tsx
+|    ├── TopRatedProducts.tsx
+|
 ├── hooks/                # Custom hooks (e.g., useProductLists)
 ├── pages/                # Next.js pages
 │   ├── index.tsx         # Home page
