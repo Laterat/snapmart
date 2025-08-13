@@ -76,12 +76,17 @@ snapmart/
 |
 ├── interfaces/index.tsx
 |
-├── pages/                # Next.js pages
+├── pages/  # Next.js pages
+|   ├──                 
 │   ├── index.tsx         # Home page
 │   └── product/[id].tsx  # Product detail page
 ├── public/assets/        # Static assets (logo, images, demo GIF)
-├── store/                # Redux store & slices
-├── styles/               # Global styles
+├── store/    # Redux store & slices
+|    ├── slices
+|           └── cartSlice.ts      
+|           └── filterSlice.ts  
+|    ├── store.ts           
+├── styles/global.css               # Global styles
 └── README.md
 ```
 
