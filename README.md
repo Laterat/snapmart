@@ -4,12 +4,6 @@
 
 Snapmart is a modern, scalable e-commerce web application built with Next.js and React, designed to deliver a seamless shopping experience. It leverages a robust frontend stack including Redux Toolkit, Tailwind CSS, and TypeScript to ensure maintainability, performance, and developer productivity.
 
-Alright 👍
-I’ll extend your **SnapMart README** with a **Quick Demo GIF section** so it feels more engaging and presentation-ready.
-
-Here’s the updated version:
-
----
 
 # 🛒 SnapMart
 
